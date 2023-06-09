@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -ap | sort -d -k1.1,1.1 -k1.2n,1.2 | awk 'BEGIN{ORS=","} {print $0}'
+ls -ap | awk 'BEGIN{ORS=","} {print $0}'
