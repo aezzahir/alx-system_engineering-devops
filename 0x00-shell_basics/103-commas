@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -ap | awk 'BEGIN{ORS=""; sep="";}{print sep $0; sep=", "}'
+ls -amp | sort -d 
