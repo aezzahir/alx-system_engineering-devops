@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -ap
+ls -ap1 | awk '{ORS = (NR % 2 == 0)? ", " : "\n"; print}'
