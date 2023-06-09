@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -ap1 | awk '{ORS = (NR % 2 == 0)? ", " : "\n"; print}'
+ls -Ap | sort -d -k1.1,1.1 -k1.2n,1.2 | awk 'BEGIN{ORS=","} {print $0}'
