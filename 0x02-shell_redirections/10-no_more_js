@@ -1,2 +1,3 @@
 #!/bin/bash
-find . type f *.js | rm
+find . type f -name "*.js" | rm
+
