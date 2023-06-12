@@ -1,15 +1,1 @@
-This is alx-system_engineering-devops README.md Files 
-0. Where am I?
-mandatory
-Write a script that prints the absolute path name of the current working directory.
-
-Example:
-
-$ ./0-current_working_directory
-/root/alx-system_engineering-devops/0x00-shell_basics
-$
-Repo:
-
-GitHub repository: alx-system_engineering-devops
-Directory: 0x00-shell_basics
-File: 0-current_working_directory
+This repository contains the tasks and projects completed during the ALX Software Engineers program. The ALX program is a comprehensive software engineering training program that equips students with the necessary skills and knowledge to become proficient software engineers. This repository serves as a record of the student's progress throughout the program, showcasing their understanding of various programming concepts, algorithms, data structures, and software development methodologies. The tasks and projects included in this repository demonstrate the student's ability to design, implement, and test software solutions using industry-standard practices. It provides a valuable resource for reviewing completed work, tracking personal growth, and showcasing acquired skills to potential employers or collaborators.
