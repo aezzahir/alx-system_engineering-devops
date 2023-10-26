@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Use until loop to Write 10 times Best School.
+i="0"
+
+until [ "$i" -gt 9 ];do
+echo "Best School"
+i=$((i+1))
+done
