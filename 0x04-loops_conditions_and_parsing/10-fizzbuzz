@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Loop from 1 to 100
+
+for i in {1..100}; do
+    # Check if number is multiple of both 3 and 5
+    if (( i % 3 == 0 && i % 5 == 0 )); then
+        echo "FizzBuzz"
+    # Check if number is multiple of 3
+    elif (( i % 3 == 0 )); then
+        echo "Fizz"
+    # Check if number is multiple of 5
+    elif (( i % 5 == 0 )); then
+        echo "Buzz"
+    # Otherwise, display the number itself
+    else
+        echo "$i"
+    fi
+done
+
