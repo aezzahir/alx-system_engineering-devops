@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# File name to check
+FILE="school"
+
+# Check if file exists
+if [ -e "$FILE" ]; then
+    echo "school file exists"
+else
+    echo "school file does not exist"
+    exit 0 # Exit the script because subsequent checks are not relevant if the file doesn't exist
+fi
+
+# Check if file is empty or not
+if [ -s "$FILE" ]; then
+    echo "school file is not empty"
+else
+    echo "school file is empty"
+fi
+
+# Check if the file is a regular file or not
+if [ -f "$FILE" ]; then
+    echo "school is a regular file"
+fi
+
+# If it's not a regular file, we do nothing (as per the requirement)
+
