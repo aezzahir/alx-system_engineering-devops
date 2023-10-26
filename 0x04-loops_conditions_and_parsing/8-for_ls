@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script will display the content of the current directory
+# in a list format showing only the part of the name after the first dash.
+
+# Loop through all non-hidden files in the current directory
+for file in *; do
+    # Check if the file is a normal file or a directory
+    if [ -f "$file" ] || [ -d "$file" ]; then
+        # Display the part of the file's name after the first dash
+        # This uses parameter substitution to remove everything up to and including the first dash
+        echo "${file#*-}"
+    fi
+done
