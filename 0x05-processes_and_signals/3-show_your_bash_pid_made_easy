@@ -1,12 +1,2 @@
 #!/usr/bin/env bash
-
-# Get the PID of the script
-for pid_dir in /proc/*/; do
-    pid=$(basename "$pid_dir")
-    cmdline=$(cat "$pid_dir/cmdline" 2>/dev/null)
-    
-    # Check if the command line contains "bash"
-    if [[ "$cmdline" == *"bash"* ]]; then
-        echo "$pid bash"
-    fi
-done
+pgrep -l bash
