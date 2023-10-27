@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
 # Get the PID of the script
-script_pid=$$
-
-# Iterate over the processes in /proc
 for pid_dir in /proc/*/; do
     pid=$(basename "$pid_dir")
     cmdline=$(cat "$pid_dir/cmdline" 2>/dev/null)
