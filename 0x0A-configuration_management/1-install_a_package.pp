@@ -10,3 +10,11 @@ package { 'Flask':
   ensure   => '2.1.0',
   provider => 'pip3',
 }
+
+# Install a compatible version of Werkzeug
+# You may need to replace 'X.X.X' with the specific version number compatible with Flask 2.1.0
+package { 'Werkzeug':
+  ensure   => 'X.X.X',
+  provider => 'pip3',
+}
+
