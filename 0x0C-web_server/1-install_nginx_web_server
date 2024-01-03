@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Transfer the file using scp
+# Installing nginx on my WebServer
+
 sudo apt-get update
-sudo apt-get install nginx
+sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
+
 echo "Hello World!" | sudo tee /var/www/html/index.html
-sudo ngix -t
+sudo ngix -t 
 sudo service nginx start
