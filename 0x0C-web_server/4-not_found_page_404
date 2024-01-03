@@ -1,61 +1,10 @@
 #!/usr/bin/env bash
-# Nginx configuration for custom 404 page is complete
-# Install Nginx
+#Redirection nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-
-# Allow Nginx HTTP traffic
 sudo ufw allow 'Nginx HTTP'
-
-# Create a custom 404 page with the specified content
-echo -e "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
-
-# Configure Nginx to use the custom 404 page
-sudo bash -c 'cat <<EOL > /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html index.htm;
-
-    server_name _;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-
-    error_page 404 /404.html;
-    location = /404.html {
-        internal;
-    }
-
-    location = /50x.html {
-        root /usr/share/nginx/html;
-    }
-
-    location = /favicon.ico {
-        log_not_found off;
-        access_log off;
-    }
-
-    location = /robots.txt {
-        log_not_found off;
-        access_log off;
-    }
-
-    location ~ /\. {
-        deny all;
-    }
-
-    location ~ ~$ {
-        access_log off;
-        log_not_found off;
-        deny all;
-    }
-}
-EOL'
-
-# Restart Nginx to apply the changes
+echo "Hello World" | sudo tee /var/www/html/index
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/my_404.html
+sed -i "46i error_page 404 /my_404.html;" /etc/nginx/sites-available/default
 sudo service nginx restart
-
