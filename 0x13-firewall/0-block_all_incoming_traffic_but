@@ -1,4 +1,4 @@
-sudo ufw reset
-sudo ufw allow 22
-sudo ufw allow 443
-sudo ufw allow 80
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw allow 22/tcp
+ufw enable
