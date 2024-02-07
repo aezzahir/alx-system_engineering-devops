@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# 0. World wide web
+display_info() {
+    local subdomain="$1"
+    local domain="$2"
+
+    dig_output=$(dig "$subdomain.$domain" +short)
+
+    if [ -n "$dig_output" ]; then
+        record_type=$(dig "$subdomain.$domain" | awk '/ANSWER SECTION:/ {getline; print $4}')
+        echo "The subdomain $subdomain is a $record_type record and points to $dig_output"
+    else
+        echo "The subdomain $subdomain does not exist."
+    fi
+}
+
+if [ "$#" -eq 1 ]; then
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    for subdomain in "${subdomains[@]}"; do
+        display_info "$subdomain" "$1"
+    done
+elif [ "$#" -eq 2 ]; then
+    display_info "$2" "$1"
+else
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
