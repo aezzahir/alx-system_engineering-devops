@@ -42,9 +42,6 @@ frontend  aezzahir_frontend
         bind *:80
         bind *:443 ssl crt /etc/haproxy/certs/www.aezzahir.tech.pem
         http-request redirect scheme https unless { ssl_fc }
-	reqadd X-Forwarded-Proto:\ https
-	acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-   	use_backend letsencrypt-backend if letsencrypt-acl
     	http-request set-header X-Forwarded-Proto https
         default_backend aezzahir_backend
 backend aezzahir_backend
