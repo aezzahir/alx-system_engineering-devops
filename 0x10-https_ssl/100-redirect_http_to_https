@@ -25,6 +25,8 @@ defaults
         mode    http
         option  httplog
         option  dontlognull
+	option forwardfor
+	option http-server-close
         timeout connect 5000
         timeout client  50000
         timeout server  50000
@@ -40,10 +42,14 @@ frontend  aezzahir_frontend
         bind *:80
         bind *:443 ssl crt /etc/haproxy/certs/www.aezzahir.tech.pem
         http-request redirect scheme https unless { ssl_fc }
+	reqadd X-Forwarded-Proto:\ https
+	acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+   	use_backend letsencrypt-backend if letsencrypt-acl
     	http-request set-header X-Forwarded-Proto https
         default_backend aezzahir_backend
 backend aezzahir_backend
         balance roundrobin
+	redirect scheme https if !{ ssl_fc }
         server 431011-web-01 18.234.253.112:80 check
         server 431011-web-02 54.196.41.205:80 check
 backend letsencrypt-backend
