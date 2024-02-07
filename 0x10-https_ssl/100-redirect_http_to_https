@@ -7,7 +7,8 @@ global
 	user haproxy
 	group haproxy
 	daemon
-
+	maxconn 2048
+        tune.ssl.default-dh-param 2048
 	# Default SSL material locations
 	ca-base /etc/ssl/certs
 	crt-base /etc/ssl/private
@@ -35,7 +36,7 @@ defaults
 
 frontend  aezzahir_frontend
         bind *:80
-	bind *:443 ssl crt /etc/haproxy/certs/www.aezzahir.tech.pem
+	bind *:443 ssl crt /etc/haproxy/certs/www.aezzahir.tech.pem 
 	http-request redirect scheme https code 301 unless { ssl_fc }
     	http-request set-header X-Forwarded-Proto https
         default_backend aezzahir_backend
