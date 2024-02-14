@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 """
-Prototype: def number_of_subscribers(subreddit)
-- If not a valid subreddit, return 0.
-- NOTE: Invalid subreddits may return a redirect
-to search results. Ensure that you are not following redirects.
+Returns the number of subscribers for a given subreddit.
 """
 
 import requests
