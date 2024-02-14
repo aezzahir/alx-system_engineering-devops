@@ -34,9 +34,8 @@ def count_words(subreddit, word_list, word_count=[], page_after=None):
                 count_words(subreddit, word_list,
                             word_count, r.json()['data']['after'])
     else:
-        my_url = ('https://www.reddit.com/r/{}/hot.json?after={}'
-               .format(subreddit,
-                       page_after))
+        my_url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(
+                                                subreddit, page_after)
         r = get(my_url, headers=headers, allow_redirects=False)
 
         if r.status_code == 200:
