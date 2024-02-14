@@ -6,18 +6,23 @@
 import requests
 
 
-def top_ten(subreddit):
+def recurse(subreddit, hot_list=None, after=None):
+    if hot_list is None:
+        hot_list = []
+
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    params = {'limit': 100, 'after': after}
     headers = {'User-Agent': 'Mozilla/5.0'}
-    params = {'limit': 10}
     response = requests.get(url, params=params, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
         posts = data['data']['children']
-        if not posts:
-            return []
+        if posts:
+            hot_list.extend(post['data']['title'] for post in posts)
+            after = data['data']['after']
+            return recurse(subreddit, hot_list, after)
         else:
-            return [post['data']['title'] for post in posts]
+            return hot_list
     else:
-        print(None)
+        return None
